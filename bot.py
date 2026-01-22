@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS videos (
 """)
 db.commit()
 
-# ====== MENULAR ======
+# ====== MENULAR =====
 def main_menu():
     kb = ReplyKeyboardMarkup(resize_keyboard=True)
     kb.add(
