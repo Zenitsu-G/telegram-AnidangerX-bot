@@ -17,7 +17,37 @@ def admin_menu():
         KeyboardButton("⬅️ Orqaga")
     )
     return kb
+@bot.message_handler(commands=['admin'])
+def admin_panel(message):
+    if message.from_user.id == ADMIN_ID:
+        bot.send_message(
+            message.chat.id,
+            "👑 Admin panel",
+            reply_markup=admin_menu()
+        )
+    else:
+        bot.send_message(message.chat.id, "⛔ Siz admin emassiz")
+@bot.message_handler(func=lambda m: m.text == "➕ Video qo‘shish")
+def ask_video(message):
+    if message.from_user.id == ADMIN_ID:
+        bot.send_message(message.chat.id, "📥 Video yuboring")
+        @bot.message_handler(content_types=['video'])
+def save_video(message):
+    if message.from_user.id == ADMIN_ID:
+        file_id = message.video.file_id
+        cursor.execute("INSERT INTO videos (file_id) VALUES (?)", (file_id,))
+        db.commit()
+        bot.send_message(message.chat.id, "✅ Video saqlandi")
+        @bot.message_handler(func=lambda m: m.text == "📊 Statistika")
+def stats(message):
+    if message.from_user.id == ADMIN_ID:
+        cursor.execute("SELECT COUNT(*) FROM videos")
+        videos = cursor.fetchone()[0]
 
+        bot.send_message(
+            message.chat.id,
+            f"🎬 Videolar soni: {videos}"
+        )
 # 📦 DATABASE
 db = sqlite3.connect("videos.db", check_same_thread=False)
 cursor = db.cursor()
