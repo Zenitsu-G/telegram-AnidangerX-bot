@@ -86,6 +86,6 @@ def show_videos(message):
             bot.send_video(message.chat.id, row[0])
 
 # ====== RUN ======
-if __name__ == "__main__":
+ "__main__":
     print("Bot ishga tushdi...")
     bot.infinity_polling(skip_pending=True)
