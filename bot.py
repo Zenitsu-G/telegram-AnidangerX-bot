@@ -6,6 +6,17 @@ TOKEN = "8525843502:AAG0E9Bc5Tk1RP1axTWzl0Gr7RDZgvRBi30"
 ADMIN_ID = 7562283220
 
 bot = telebot.TeleBot(TOKEN)
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+
+def admin_menu():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(
+        KeyboardButton("➕ Video qo‘shish"),
+        KeyboardButton("📂 Videolar"),
+        KeyboardButton("📊 Statistika"),
+        KeyboardButton("⬅️ Orqaga")
+    )
+    return kb
 
 # 📦 DATABASE
 db = sqlite3.connect("videos.db", check_same_thread=False)
