@@ -7,16 +7,6 @@ ADMIN_ID = 7562283220
 
 bot = telebot.TeleBot(TOKEN)
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
-
-def admin_menu():
-    kb = ReplyKeyboardMarkup(resize_keyboard=True)
-    kb.add(
-        KeyboardButton("➕ Video qo‘shish"),
-        KeyboardButton("📂 Videolar"),
-        KeyboardButton("📊 Statistika"),
-        KeyboardButton("⬅️ Orqaga")
-    )
-    return kb
 @bot.message_handler(commands=['admin'])
 def admin_panel(message):
     if message.from_user.id == ADMIN_ID:
@@ -27,6 +17,15 @@ def admin_panel(message):
         )
     else:
         bot.send_message(message.chat.id, "⛔ Siz admin emassiz")
+def admin_menu():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(
+        KeyboardButton("➕ Video qo‘shish"),
+        KeyboardButton("📂 Videolar"),
+        KeyboardButton("📊 Statistika"),
+        KeyboardButton("⬅️ Orqaga")
+    )
+    return kb
 @bot.message_handler(func=lambda m: m.text == "➕ Video qo‘shish")
 def ask_video(message):
     if message.from_user.id == ADMIN_ID:
