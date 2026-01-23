@@ -4,7 +4,7 @@ import sqlite3
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
 # ====== ENV ======
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("8490468392:AAGpTTqWninSndsxrA1_OS7zmS-f7mt9_Fk")
 ADMIN_ID = 7562283220  # o'zingning admin ID
 
 if not TOKEN:
